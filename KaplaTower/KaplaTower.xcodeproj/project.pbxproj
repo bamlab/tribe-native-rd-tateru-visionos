@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B209D502A82973800822D26 /* RotateGestureModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B209D4F2A82973800822D26 /* RotateGestureModifier.swift */; };
 		5B2FDC6D2A822E2C0039C3EC /* KaplaTowerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */; };
 		5B2FDC712A822E2C0039C3EC /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */; };
 		5B2FDC732A822E2F0039C3EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2FDC722A822E2F0039C3EC /* Assets.xcassets */; };
 		5B2FDC762A822E2F0039C3EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2FDC752A822E2F0039C3EC /* Preview Assets.xcassets */; };
 		5B762D262A8241F1007BB9FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B762D252A8241F1007BB9FE /* ContentView.swift */; };
+		5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */; };
+		5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6022A837CA400009016 /* DragRotationModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B209D4F2A82973800822D26 /* RotateGestureModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotateGestureModifier.swift; sourceTree = "<group>"; };
 		5B2FDC652A822E2C0039C3EC /* KaplaTower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaplaTower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaplaTowerApp.swift; sourceTree = "<group>"; };
 		5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		5B2FDC752A822E2F0039C3EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B2FDC772A822E2F0039C3EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B762D252A8241F1007BB9FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementGestureModifier.swift; sourceTree = "<group>"; };
+		5BFBA6022A837CA400009016 /* DragRotationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRotationModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 		5B2FDC672A822E2C0039C3EC /* KaplaTower */ = {
 			isa = PBXGroup;
 			children = (
+				5BA861C22A82874A004C3DB2 /* Modifiers */,
 				5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */,
 				5B762D252A8241F1007BB9FE /* ContentView.swift */,
 				5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */,
@@ -70,6 +77,16 @@
 				5B2FDC752A822E2F0039C3EC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BA861C22A82874A004C3DB2 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */,
+				5B209D4F2A82973800822D26 /* RotateGestureModifier.swift */,
+				5BFBA6022A837CA400009016 /* DragRotationModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */,
+				5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */,
+				5B209D502A82973800822D26 /* RotateGestureModifier.swift in Sources */,
 				5B2FDC6D2A822E2C0039C3EC /* KaplaTowerApp.swift in Sources */,
 				5B2FDC712A822E2C0039C3EC /* ImmersiveView.swift in Sources */,
 				5B762D262A8241F1007BB9FE /* ContentView.swift in Sources */,

@@ -18,16 +18,16 @@ struct ImmersiveView: View {
                 mesh: MeshResource.generateBox(width: boxSize.x, height: boxSize.y, depth: boxSize.z),
                 materials: [SimpleMaterial(color: .systemBrown, isMetallic: false)]
             )
-            
+
             cubeEntity.components.set(InputTargetComponent())
             cubeEntity.components.set(CollisionComponent(shapes: [.generateBox(width: boxSize.x, height: boxSize.y, depth: boxSize.z)]))
-
-            cubeEntity.transform.translation = SIMD3<Float>(0, 1.5, -1.5)
 
             content.add(cubeEntity)
         }
         .onAppear {
             dismissWindow(id: "Content")
         }
+        .placementGesture()
+        .rotateGesture()
     }
 }

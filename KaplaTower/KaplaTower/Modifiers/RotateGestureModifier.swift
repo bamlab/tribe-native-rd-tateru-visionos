@@ -31,7 +31,7 @@ private struct RotateGestureModifier: ViewModifier {
             .simultaneousGesture(RotateGesture3D()
                 .targetedToAnyEntity()
                 .onChanged { value in
-                    if let startRotation {
+                    if startRotation != nil {
                         rotation = value.rotation
                     } else {
                         startRotation = rotation

@@ -16,7 +16,7 @@ import ARKit
     private let worldTracking = WorldTrackingProvider()
     private var contentEntity = Entity()
 
-    let kaplaSize: SIMD3<Float> = [0.117, 0.0234, 0.0078]
+    private let kaplaSize: SIMD3<Float> = [0.117, 0.0234, 0.0078]
 
     func setupContentEntity() -> Entity {
         let kapla = ModelEntity(
@@ -25,6 +25,9 @@ import ARKit
         )
         kapla.components.set(InputTargetComponent())
         kapla.components.set(CollisionComponent(shapes: [.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z)]))
+        kapla.components.set(PhysicsMotionComponent())
+        kapla.components.set(PhysicsBodyComponent())
+        kapla.position = SIMD3(x: 0, y: 1, z: -2)
         contentEntity.addChild(kapla)
         return contentEntity
     }

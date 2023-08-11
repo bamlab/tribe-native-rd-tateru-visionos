@@ -28,7 +28,7 @@ import ARKit
         kapla.components.set(CollisionComponent(shapes: [.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z)]))
         kapla.components.set(PhysicsMotionComponent())
         kapla.components.set(PhysicsBodyComponent())
-        kapla.position = SIMD3(x: 0, y: 2, z: -2)
+        kapla.position = SIMD3(x: 0.5, y: 2, z: -2)
         kaplaEntity.addChild(kapla)
         return kaplaEntity
     }

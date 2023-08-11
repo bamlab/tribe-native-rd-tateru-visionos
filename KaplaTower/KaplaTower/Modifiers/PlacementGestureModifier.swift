@@ -25,7 +25,7 @@ private struct PlacementGestureModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .offset(x: position.x, y: position.y)
+            .position(x: position.x, y: position.y)
             .offset(z: position.z)
 
             // Enable people to move the model anywhere in their space.

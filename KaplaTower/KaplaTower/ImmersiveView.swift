@@ -14,7 +14,11 @@ struct ImmersiveView: View {
 
     var body: some View {
         RealityView { content in
-            content.add(model.setupContentEntity())
+            content.add(model.setupTable())
+        }
+        
+        RealityView { content in
+            content.add(model.setupKapla())
         }
         .task {
             await model.runSession()

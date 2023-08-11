@@ -29,7 +29,6 @@ private struct RotateGestureModifier: ViewModifier {
             
             // Enable people to rotate the model anywhere in their space.
             .simultaneousGesture(RotateGesture3D()
-                .targetedToAnyEntity()
                 .onChanged { value in
                     if startRotation != nil {
                         rotation = value.rotation

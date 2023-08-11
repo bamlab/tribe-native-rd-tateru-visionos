@@ -14,11 +14,12 @@ import ARKit
     private let session = ARKitSession()
     private let planeData = PlaneDetectionProvider(alignments: [.horizontal, .vertical])
     private let worldTracking = WorldTrackingProvider()
-    private var contentEntity = Entity()
+    private var kaplaEntity = Entity()
+    private var tableEntity = Entity()
 
     private let kaplaSize: SIMD3<Float> = [0.117, 0.0234, 0.0078]
 
-    func setupContentEntity() -> Entity {
+    func setupKapla() -> Entity {
         let kapla = ModelEntity(
             mesh: MeshResource.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z),
             materials: [SimpleMaterial(color: .systemBrown, isMetallic: false)]
@@ -27,9 +28,20 @@ import ARKit
         kapla.components.set(CollisionComponent(shapes: [.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z)]))
         kapla.components.set(PhysicsMotionComponent())
         kapla.components.set(PhysicsBodyComponent())
-        kapla.position = SIMD3(x: 0, y: 1, z: -2)
-        contentEntity.addChild(kapla)
-        return contentEntity
+        kapla.position = SIMD3(x: 0, y: 2, z: -2)
+        kaplaEntity.addChild(kapla)
+        return kaplaEntity
+    }
+
+    func setupTable() -> Entity {
+        let table = ModelEntity(
+            mesh: MeshResource.generateBox(width: 1, height: 0.01, depth: 1),
+            materials: [SimpleMaterial(color: .systemPink, isMetallic: true)]
+        )
+        table.components.set(CollisionComponent(shapes: [.generateBox(width: 1, height: 0.01, depth: 1)]))
+        table.position = SIMD3(x: 0, y: 1.5, z: -2)
+        tableEntity.addChild(table)
+        return tableEntity
     }
 
     func runSession() async {
@@ -86,7 +98,7 @@ import ARKit
                 mesh: .generateText(anchor.classification.description)
             )
             entityMap[anchor.id] = entity
-            contentEntity.addChild(entity)
+            kaplaEntity.addChild(entity)
         }
         entityMap[anchor.id]?.transform = Transform(matrix: anchor.transform)
     }

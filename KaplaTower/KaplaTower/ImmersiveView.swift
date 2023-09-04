@@ -16,6 +16,10 @@ struct ImmersiveView: View {
         RealityView { content in
             content.add(model.setupTable())
         }
+
+        RealityView { content in
+            content.add(model.setupPlate())
+        }
         
         RealityView { content in
             content.add(model.setupKapla())

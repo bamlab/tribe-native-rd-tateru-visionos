@@ -16,6 +16,7 @@ import ARKit
     private let worldTracking = WorldTrackingProvider()
     private var kaplaEntity = Entity()
     private var tableEntity = Entity()
+    private var plateEntity = Entity()
 
     private let kaplaSize: SIMD3<Float> = [0.117, 0.0234, 0.0078]
 
@@ -42,6 +43,19 @@ import ARKit
         table.position = SIMD3(x: 0, y: 1.5, z: -2)
         tableEntity.addChild(table)
         return tableEntity
+    }
+    
+    func setupPlate() -> Entity {
+        let plate = ModelEntity(
+            mesh: MeshResource.generateBox(width: 0.5, height: 0.01, depth: 0.5, cornerRadius: 10),
+            materials: [SimpleMaterial(color: .systemGray, isMetallic: true)]
+        )
+        plate.components.set(CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)]))
+        plate.components.set(PhysicsMotionComponent())
+        plate.components.set(PhysicsBodyComponent())
+        plate.position = SIMD3(x: 0, y: 1.8, z: -2)
+        plateEntity.addChild(plate)
+        return plateEntity
     }
 
     func runSession() async {

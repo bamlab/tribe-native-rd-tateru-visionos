@@ -8,20 +8,21 @@
 import SwiftUI
 import RealityKit
 
-extension View {
-    /// Listens for gestures and places an item based on those inputs.
-    func placementGesture() -> some View {
-        self.modifier(
-            PlacementGestureModifier()
-        )
-    }
-}
+//extension View {
+//    /// Listens for gestures and places an item based on those inputs.
+//    func placementGesture(isKaplaMoving: inout Bool) -> some View {
+//        self.modifier(
+//            PlacementGestureModifier(isKaplaMoving: isKaplaMoving)
+//        )
+//    }
+//}
 
 /// A modifier that adds gestures and positioning to a view.
-private struct PlacementGestureModifier: ViewModifier {
+struct PlacementGestureModifier: ViewModifier {
 
     @State private var position: Point3D = .zero
     @State private var startPosition: Point3D? = nil
+    @Binding var isKaplaMoving: Bool
 
     func body(content: Content) -> some View {
         content
@@ -31,6 +32,7 @@ private struct PlacementGestureModifier: ViewModifier {
             // Enable people to move the model anywhere in their space.
             .simultaneousGesture(DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
                 .onChanged { value in
+                    isKaplaMoving = true
                     if let startPosition {
                         let delta = value.location3D - value.startLocation3D
                         position = startPosition + delta
@@ -39,6 +41,7 @@ private struct PlacementGestureModifier: ViewModifier {
                     }
                 }
                 .onEnded { _ in
+                    isKaplaMoving = false
                     startPosition = nil
                 }
             )

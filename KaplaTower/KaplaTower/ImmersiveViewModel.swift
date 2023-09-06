@@ -20,15 +20,16 @@ import ARKit
 
     private let kaplaSize: SIMD3<Float> = [0.117, 0.0234, 0.0078]
 
+    var isKaplaMoving: Bool = false
+
     func setupKapla() -> Entity {
         let kapla = ModelEntity(
             mesh: MeshResource.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z),
             materials: [SimpleMaterial(color: .systemBrown, isMetallic: false)]
         )
         kapla.components.set(InputTargetComponent())
-        kapla.components.set(CollisionComponent(shapes: [.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z)]))
-        kapla.components.set(PhysicsMotionComponent())
-        kapla.components.set(PhysicsBodyComponent())
+        kapla.collision = CollisionComponent(shapes: [.generateBox(width: kaplaSize.x, height: kaplaSize.y, depth: kaplaSize.z)])
+        kapla.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic)
         kapla.position = SIMD3(x: 0.5, y: 2, z: -2)
         kaplaEntity.addChild(kapla)
         return kaplaEntity
@@ -39,7 +40,7 @@ import ARKit
             mesh: MeshResource.generateBox(width: 1, height: 0.01, depth: 1),
             materials: [SimpleMaterial(color: .systemPink, isMetallic: true)]
         )
-        table.components.set(CollisionComponent(shapes: [.generateBox(width: 1, height: 0.01, depth: 1)]))
+        table.collision = CollisionComponent(shapes: [.generateBox(width: 1, height: 0.01, depth: 1)])
         table.position = SIMD3(x: 0, y: 1.5, z: -2)
         tableEntity.addChild(table)
         return tableEntity
@@ -50,10 +51,8 @@ import ARKit
             mesh: MeshResource.generateBox(width: 0.5, height: 0.01, depth: 0.5, cornerRadius: 10),
             materials: [SimpleMaterial(color: .systemGray, isMetallic: true)]
         )
-        plate.components.set(CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)]))
-        plate.components.set(PhysicsMotionComponent())
-        plate.components.set(PhysicsBodyComponent())
-        plate.position = SIMD3(x: 0, y: 1.8, z: -2)
+        plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)])
+        plate.position = SIMD3(x: 0, y: 1.7, z: -2)
         plateEntity.addChild(plate)
         return plateEntity
     }
@@ -99,6 +98,16 @@ import ARKit
                 @unknown default:
                     break
                 }
+            }
+        }
+    }
+
+    func updateKaplaGravity(isKaplaMoving: Bool) {
+        kaplaEntity.children.forEach { child in
+            if (isKaplaMoving) {
+                child.components.remove(PhysicsBodyComponent.self)
+            } else {
+                child.components.set(PhysicsBodyComponent())
             }
         }
     }

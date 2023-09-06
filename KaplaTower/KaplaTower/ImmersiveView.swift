@@ -11,6 +11,7 @@ import RealityKit
 struct ImmersiveView: View {
     @Environment(\.dismissWindow) private var dismissWindow
     @StateObject var model = ImmersiveViewModel()
+    @State var isKaplaMoving: Bool = false
 
     var body: some View {
         RealityView { content in
@@ -30,7 +31,10 @@ struct ImmersiveView: View {
         .onAppear {
             dismissWindow(id: "Content")
         }
-        .placementGesture()
-        .rotateGesture()
+        .onChange(of: isKaplaMoving, initial: false) { _, newValue  in
+            model.updateKaplaGravity(isKaplaMoving: newValue)
+        }
+        .modifier(PlacementGestureModifier(isKaplaMoving: $isKaplaMoving))
+        .modifier(RotateGestureModifier(isKaplaMoving: $isKaplaMoving))
     }
 }

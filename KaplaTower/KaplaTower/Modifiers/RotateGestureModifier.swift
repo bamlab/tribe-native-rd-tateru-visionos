@@ -8,20 +8,21 @@
 import SwiftUI
 import RealityKit
 
-extension View {
-    /// Listens for gestures and places an item based on those inputs.
-    func rotateGesture() -> some View {
-        self.modifier(
-            RotateGestureModifier()
-        )
-    }
-}
+//extension View {
+//    /// Listens for gestures and places an item based on those inputs.
+//    func rotateGesture(isKaplaMoving: inout Bool) -> some View {
+//        self.modifier(
+//            RotateGestureModifier(isKaplaMoving: isKaplaMoving)
+//        )
+//    }
+//}
 
 /// A modifier that adds gestures and positioning to a view.
-private struct RotateGestureModifier: ViewModifier {
+struct RotateGestureModifier: ViewModifier {
 
     @State private var rotation: Rotation3D = .init()
     @State private var startRotation: Rotation3D? = nil
+    @Binding var isKaplaMoving: Bool
 
     func body(content: Content) -> some View {
         content
@@ -30,6 +31,7 @@ private struct RotateGestureModifier: ViewModifier {
             // Enable people to rotate the model anywhere in their space.
             .simultaneousGesture(RotateGesture3D()
                 .onChanged { value in
+                    isKaplaMoving = true
                     if startRotation != nil {
                         rotation = value.rotation
                     } else {
@@ -37,6 +39,7 @@ private struct RotateGestureModifier: ViewModifier {
                     }
                 }
                 .onEnded { _ in
+                    isKaplaMoving = false
                     startRotation = nil
                 }
             )

@@ -10,40 +10,55 @@ import RealityKit
 
 struct ImmersiveView: View {
     @Environment(\.dismissWindow) private var dismissWindow
+    @State private var subs: [EventSubscription] = []
     @StateObject var model = ImmersiveViewModel()
     @State var kaplas: [Entity] = []
     @State var kaplasMoving: [Bool] = []
+    @State var isGameOver: Bool = false
 
     var body: some View {
-        RealityView { content in
-            content.add(model.setupTable())
-        }
-        .onAppear {
-            dismissWindow(id: "Content")
-            kaplas.append(contentsOf: [
-                model.setupKapla(position: SIMD3(x: 0.45, y: 2, z: -2), isOddFloor: true),
-                model.setupKapla(position: SIMD3(x: 0.5, y: 2, z: -2), isOddFloor: true),
-                model.setupKapla(position: SIMD3(x: 0.55, y: 2, z: -2), isOddFloor: true)
-            ])
-            kaplasMoving.append(contentsOf: [false, false, false])
-        }
-        .onChange(of: kaplasMoving, initial: false) { value, newValue in
-            let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
-            if let index = indices.first {
-                model.updateKaplaGravity(kapla: kaplas[index], isKaplaMoving: kaplasMoving[index])
-            }
-        }
-
-        RealityView { content in
-            content.add(model.setupPlate())
-        }
-        
-        ForEach(Array(kaplas.enumerated()), id: \.offset) { index, element in
+        if (!isGameOver) {
             RealityView { content in
-                content.add(element)
+                let table = model.setupTable()
+                content.add(table)
+                let event = content.subscribe(to: CollisionEvents.Began.self, on: table) { ce in
+                    isGameOver = true
+                }
+                Task {
+                    subs.append(event)
+                }
             }
-            .modifier(PlacementGestureModifier(kaplasMoving: $kaplasMoving, index: index))
-            .modifier(RotateGestureModifier(kaplasMoving: $kaplasMoving, index: index))
+            .onAppear {
+                dismissWindow(id: "Content")
+                kaplas.append(contentsOf: [
+                    model.setupKapla(position: SIMD3(x: 0.45, y: 2, z: -2), isOddFloor: true),
+                    model.setupKapla(position: SIMD3(x: 0.5, y: 2, z: -2), isOddFloor: true),
+                    model.setupKapla(position: SIMD3(x: 0.55, y: 2, z: -2), isOddFloor: true)
+                ])
+                kaplasMoving.append(contentsOf: [false, false, false])
+            }
+            .onChange(of: kaplasMoving, initial: false) { value, newValue in
+                let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
+                if let index = indices.first {
+                    model.updateKaplaGravity(kapla: kaplas[index], isKaplaMoving: kaplasMoving[index])
+                }
+            }
+            
+            RealityView { content in
+                content.add(model.setupPlate())
+            }
+            
+            ForEach(Array(kaplas.enumerated()), id: \.offset) { index, element in
+                RealityView { content in
+                    content.add(element)
+                }
+                .modifier(PlacementGestureModifier(kaplasMoving: $kaplasMoving, index: index))
+                .modifier(RotateGestureModifier(kaplasMoving: $kaplasMoving, index: index))
+            }
+        } else {
+            RealityView { content in
+                content.add(model.setupGameOver())
+            }
         }
     }
 }

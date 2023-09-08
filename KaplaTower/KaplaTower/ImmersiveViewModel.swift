@@ -29,11 +29,14 @@ import ARKit
     }
 
     func setupTable() -> ModelEntity {
+        var material = SimpleMaterial()
+        material.color = SimpleMaterial.BaseColor(tint: UIColor(red: 0, green: 0, blue: 0, alpha: 0))
+
         let table = ModelEntity(
-            mesh: MeshResource.generateBox(width: 1, height: 0.01, depth: 1),
-            materials: [SimpleMaterial(color: .systemPink, isMetallic: false)]
+            mesh: MeshResource.generateBox(width: 2, height: 0.01, depth: 2),
+            materials: [material]
         )
-        table.collision = CollisionComponent(shapes: [.generateBox(width: 1, height: 0.01, depth: 1)])
+        table.collision = CollisionComponent(shapes: [.generateBox(width: 2, height: 0.01, depth: 2)], mode: .trigger, filter: .sensor)
         table.position = SIMD3(x: 0, y: 1.5, z: -2)
         return table
     }
@@ -47,6 +50,23 @@ import ARKit
         plate.position = SIMD3(x: 0, y: 1.7, z: -2)
         return plate
     }
+    
+    func setupGameOver() -> ModelEntity {
+        let textMesh = MeshResource.generateText(
+            "GAME OVER",
+            extrusionDepth: 0.1,
+            font: .init(
+                descriptor: .init(name: "Helvetica", size: 0),
+                size: 0.3
+            )
+        )
+        let gameOver = ModelEntity(
+            mesh: textMesh,
+            materials: [SimpleMaterial(color: .systemRed, isMetallic: true)]
+        )
+        gameOver.position = SIMD3(x: -1, y: 1.7, z: -2)
+        return gameOver
+    }
 
     func updateKaplaGravity(kapla: Entity, isKaplaMoving: Bool) {
         if (isKaplaMoving) {
@@ -55,14 +75,4 @@ import ARKit
             kapla.components.set(PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic))
         }
     }
-
-//    func updateKaplaGravity(isKaplaMoving: Bool) {
-//        kaplaEntity.children.forEach { child in
-//            if (isKaplaMoving) {
-//                child.components.remove(PhysicsBodyComponent.self)
-//            } else {
-//                child.components.set(PhysicsBodyComponent())
-//            }
-//        }
-//    }
 }

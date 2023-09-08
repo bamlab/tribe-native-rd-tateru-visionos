@@ -22,7 +22,8 @@ struct PlacementGestureModifier: ViewModifier {
 
     @State private var position: Point3D = .zero
     @State private var startPosition: Point3D? = nil
-    @Binding var isKaplaMoving: Bool
+    @Binding var kaplasMoving: [Bool]
+    var index: Int
 
     func body(content: Content) -> some View {
         content
@@ -32,7 +33,7 @@ struct PlacementGestureModifier: ViewModifier {
             // Enable people to move the model anywhere in their space.
             .simultaneousGesture(DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
                 .onChanged { value in
-                    isKaplaMoving = true
+                    kaplasMoving[index] = true
                     if let startPosition {
                         let delta = value.location3D - value.startLocation3D
                         position = startPosition + delta
@@ -41,7 +42,7 @@ struct PlacementGestureModifier: ViewModifier {
                     }
                 }
                 .onEnded { _ in
-                    isKaplaMoving = false
+                    kaplasMoving[index] = false
                     startPosition = nil
                 }
             )

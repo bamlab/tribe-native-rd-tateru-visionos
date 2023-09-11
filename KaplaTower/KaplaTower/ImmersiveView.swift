@@ -31,9 +31,9 @@ struct ImmersiveView: View {
             .onAppear {
                 dismissWindow(id: "Content")
                 kaplas.append(contentsOf: [
-                    model.setupKapla(position: SIMD3(x: 0.45, y: 2, z: -2), isOddFloor: true),
-                    model.setupKapla(position: SIMD3(x: 0.5, y: 2, z: -2), isOddFloor: true),
-                    model.setupKapla(position: SIMD3(x: 0.55, y: 2, z: -2), isOddFloor: true)
+                    model.setupKapla(position: SIMD3(x: 0.475, y: 1.3, z: -2), isOddFloor: true),
+                    model.setupKapla(position: SIMD3(x: 0.5, y: 1.4, z: -2), isOddFloor: true),
+                    model.setupKapla(position: SIMD3(x: 0.525, y: 1.5, z: -2), isOddFloor: true)
                 ])
                 kaplasMoving.append(contentsOf: [false, false, false])
             }

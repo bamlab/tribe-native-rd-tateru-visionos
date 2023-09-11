@@ -24,7 +24,7 @@ import ARKit
         kapla.components.set(InputTargetComponent())
         kapla.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
         kapla.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic)
-        kapla.position = position
+        kapla.setPosition(position, relativeTo: nil)
         return kapla
     }
 
@@ -37,7 +37,7 @@ import ARKit
             materials: [material]
         )
         table.collision = CollisionComponent(shapes: [.generateBox(width: 2, height: 0.01, depth: 2)], mode: .trigger, filter: .sensor)
-        table.position = SIMD3(x: 0, y: 1.5, z: -2)
+        table.setPosition(SIMD3(x: 0, y: 1, z: -2), relativeTo: nil)
         return table
     }
     
@@ -47,7 +47,7 @@ import ARKit
             materials: [SimpleMaterial(color: .systemGray, isMetallic: false)]
         )
         plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)])
-        plate.position = SIMD3(x: 0, y: 1.7, z: -2)
+        plate.setPosition(SIMD3(x: 0, y: 1.2, z: -2), relativeTo: nil)
         return plate
     }
     
@@ -64,7 +64,7 @@ import ARKit
             mesh: textMesh,
             materials: [SimpleMaterial(color: .systemRed, isMetallic: true)]
         )
-        gameOver.position = SIMD3(x: -1, y: 1.7, z: -2)
+        gameOver.setPosition(SIMD3(x: -1, y: 1.5, z: -2), relativeTo: nil)
         return gameOver
     }
 

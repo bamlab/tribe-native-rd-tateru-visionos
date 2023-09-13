@@ -19,11 +19,11 @@ import ARKit
         let depth = isOddFloor ? kaplaSize.x : kaplaSize.z
         let kapla = ModelEntity(
             mesh: MeshResource.generateBox(width: width, height: height, depth: depth),
-            materials: [SimpleMaterial(color: isOddFloor ? .systemBrown : .systemGreen, isMetallic: false)]
+            materials: [SimpleMaterial(color: .systemBrown, isMetallic: false)]
         )
         kapla.components.set(InputTargetComponent())
         kapla.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
-        kapla.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic)
+//        kapla.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
         kapla.setPosition(position, relativeTo: nil)
         return kapla
     }

@@ -30,12 +30,8 @@ struct ImmersiveView: View {
             }
             .onAppear {
                 dismissWindow(id: "Content")
-                kaplas.append(contentsOf: [
-                    model.setupKapla(position: SIMD3(x: 0.475, y: 1.3, z: -2), isOddFloor: true),
-                    model.setupKapla(position: SIMD3(x: 0.5, y: 1.4, z: -2), isOddFloor: true),
-                    model.setupKapla(position: SIMD3(x: 0.525, y: 1.5, z: -2), isOddFloor: true)
-                ])
-                kaplasMoving.append(contentsOf: [false, false, false])
+                kaplas.append(contentsOf: createTower(model))
+                kaplasMoving.append(contentsOf: Array(repeating: false, count: 18*3))
             }
             .onChange(of: kaplasMoving, initial: false) { value, newValue in
                 let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
@@ -61,4 +57,24 @@ struct ImmersiveView: View {
             }
         }
     }
+}
+
+@MainActor func createTower(_ model: ImmersiveViewModel) -> [ModelEntity] {
+    var tower: [ModelEntity] = []
+    let x: Float = 0.5
+    let y: Float = 1.46
+    let z: Float = -2
+    for i in 1...18 {
+        let yi = y+(Float(i)*0.015)
+        if (i%2 == 0) {
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.0098, z: z+0.025), isOddFloor: false))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.019, z: z), isOddFloor: false))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.029, z: z-0.025), isOddFloor: false))
+        } else {
+            tower.append(model.setupKapla(position: SIMD3(x: x-0.025, y: yi-0.0195, z: z), isOddFloor: true))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi-0.0098, z: z), isOddFloor: true))
+            tower.append(model.setupKapla(position: SIMD3(x: x+0.025, y: yi, z: z), isOddFloor: true))
+        }
+    }
+    return tower
 }

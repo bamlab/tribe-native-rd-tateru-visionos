@@ -9,24 +9,37 @@ import SwiftUI
 import RealityKit
 
 struct ContentView: View {
-
-    @State private var showImmersiveSpace = false
-
-    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-
     var body: some View {
-        NavigationSplitView {
-            List {
-                Text("Kapla")
-            }.navigationTitle("Sidebar")
-        } detail: {
-            Button("Show Kapla") {
-                Task {
-                    await openImmersiveSpace(id: "ImmersiveSpace")
-                }
-            }
-            .navigationTitle("Content")
-            .padding()
+        VStack {
+            Text("TA")
+                .font(Font.system(size: 100, weight: .bold))
+                .foregroundColor(Color(red: 253 / 255, green: 101 / 255, blue: 101 / 255))
+                + Text("TE")
+                .font(Font.system(size: 100, weight: .bold))
+                .foregroundColor(Color(red: 83 / 255, green: 155 / 255, blue: 255 / 255))
+                + Text("RU")
+                .font(Font.system(size: 100, weight: .bold))
+                .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
+            HStack {
+                Button {
+                    print("Nouvelle partie")
+                } label: {
+                    Text("Nouvelle partie")
+                        .font(.system(size: 50))
+                        .bold()
+                        .padding()
+                }.padding()
+                Button {
+                    print("Meilleur scores")
+                } label: {
+                    Text("Meilleur scores")
+                        .font(.system(size: 50))
+                        .bold()
+                        .padding()
+                }.padding()
+            }.padding()
         }
+        .padding()
+        .background(Color.clear)
     }
 }

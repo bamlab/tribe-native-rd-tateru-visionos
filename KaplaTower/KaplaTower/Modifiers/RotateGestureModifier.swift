@@ -22,8 +22,6 @@ struct RotateGestureModifier: ViewModifier {
 
     @State private var rotation: Rotation3D = .init()
     @State private var startRotation: Rotation3D? = nil
-    @Binding var kaplasMoving: [Bool]
-    var index: Int
 
     func body(content: Content) -> some View {
         content
@@ -32,15 +30,13 @@ struct RotateGestureModifier: ViewModifier {
             // Enable people to rotate the model anywhere in their space.
             .simultaneousGesture(RotateGesture3D()
                 .onChanged { value in
-                    kaplasMoving[index] = true
                     if startRotation != nil {
                         rotation = value.rotation
                     } else {
                         startRotation = rotation
                     }
                 }
-                .onEnded { _ in
-                    kaplasMoving[index] = false
+                .onEnded { value in
                     startRotation = nil
                 }
             )

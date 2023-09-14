@@ -19,6 +19,7 @@ struct ImmersiveView: View {
     var body: some View {
         if (!isGameOver) {
             RealityView { content in
+                // Table
                 let table = model.setupTable()
                 content.add(table)
                 let event = content.subscribe(to: CollisionEvents.Began.self, on: table) { ce in
@@ -27,7 +28,17 @@ struct ImmersiveView: View {
                 Task {
                     subs.append(event)
                 }
+
+                // Plate
+                content.add(model.setupPlate())
+
+                // Kaplas
+                for kapla in kaplas {
+                    content.add(kapla)
+                    print("Kapla: \(kapla) || \(kapla.position)")
+                }
             }
+            .modifier(PlacementGestureModifier(kaplas: $kaplas, kaplasMoving: $kaplasMoving))
             .onAppear {
                 dismissWindow(id: "Content")
                 kaplas.append(contentsOf: createTower(model))
@@ -39,18 +50,6 @@ struct ImmersiveView: View {
                     model.updateKaplaGravity(kapla: kaplas[index], isKaplaMoving: kaplasMoving[index])
                 }
             }
-            
-            RealityView { content in
-                content.add(model.setupPlate())
-            }
-            
-            ForEach(Array(kaplas.enumerated()), id: \.offset) { index, element in
-                RealityView { content in
-                    content.add(element)
-                }
-                .modifier(PlacementGestureModifier(kaplasMoving: $kaplasMoving, index: index))
-                .modifier(RotateGestureModifier(kaplasMoving: $kaplasMoving, index: index))
-            }
         } else {
             RealityView { content in
                 content.add(model.setupGameOver())
@@ -61,18 +60,18 @@ struct ImmersiveView: View {
 
 @MainActor func createTower(_ model: ImmersiveViewModel) -> [ModelEntity] {
     var tower: [ModelEntity] = []
-    let x: Float = 0.5
-    let y: Float = 1.46
+    let x: Float = 0
+    let y: Float = 1.02
     let z: Float = -2
     for i in 1...18 {
         let yi = y+(Float(i)*0.015)
         if (i%2 == 0) {
-            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.0098, z: z+0.025), isOddFloor: false))
-            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.019, z: z), isOddFloor: false))
-            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi+0.029, z: z-0.025), isOddFloor: false))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi, z: z+0.025), isOddFloor: false))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi, z: z), isOddFloor: false))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi, z: z-0.025), isOddFloor: false))
         } else {
-            tower.append(model.setupKapla(position: SIMD3(x: x-0.025, y: yi-0.0195, z: z), isOddFloor: true))
-            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi-0.0098, z: z), isOddFloor: true))
+            tower.append(model.setupKapla(position: SIMD3(x: x-0.025, y: yi, z: z), isOddFloor: true))
+            tower.append(model.setupKapla(position: SIMD3(x: x, y: yi, z: z), isOddFloor: true))
             tower.append(model.setupKapla(position: SIMD3(x: x+0.025, y: yi, z: z), isOddFloor: true))
         }
     }

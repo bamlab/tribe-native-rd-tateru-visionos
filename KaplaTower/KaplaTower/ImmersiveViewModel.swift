@@ -19,7 +19,7 @@ import ARKit
         let depth = isOddFloor ? kaplaSize.x : kaplaSize.z
         let kapla = ModelEntity(
             mesh: MeshResource.generateBox(width: width, height: height, depth: depth),
-            materials: [SimpleMaterial(color: .systemBrown, isMetallic: false)]
+            materials: [SimpleMaterial(color: isOddFloor ? .systemBrown : .systemCyan, isMetallic: false)]
         )
         kapla.components.set(InputTargetComponent())
         kapla.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
@@ -47,7 +47,7 @@ import ARKit
             materials: [SimpleMaterial(color: .systemGray, isMetallic: false)]
         )
         plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)])
-        plate.setPosition(SIMD3(x: 0, y: 1.2, z: -2), relativeTo: nil)
+        plate.setPosition(SIMD3(x: 0, y: 1.02, z: -2), relativeTo: nil)
         return plate
     }
     

@@ -31,6 +31,7 @@ struct TateruView: View {
 
                 // Plate
                 content.add(model.setupPlate())
+                content.add(model.setupDepositArea())
 
                 // Blocks
                 for block in blocks {

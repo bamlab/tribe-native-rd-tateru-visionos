@@ -40,17 +40,30 @@ import ARKit
         table.setPosition(SIMD3(x: 0, y: 1, z: -2), relativeTo: nil)
         return table
     }
-    
+
     func setupPlate() -> ModelEntity {
         let plate = ModelEntity(
-            mesh: MeshResource.generateBox(width: 0.5, height: 0.01, depth: 0.5, cornerRadius: 10),
+            mesh: MeshResource.generateBox(width: 0.2, height: 0.01, depth: 0.2, cornerRadius: 10),
             materials: [SimpleMaterial(color: .systemGray, isMetallic: false)]
         )
-        plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)])
+        plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.01, depth: 0.2)])
         plate.setPosition(SIMD3(x: 0, y: 1.02, z: -2), relativeTo: nil)
         return plate
     }
-    
+
+    func setupDepositArea() -> ModelEntity {
+        var material = SimpleMaterial()
+        material.color = SimpleMaterial.BaseColor(tint: UIColor(red: 1, green: 0, blue: 0, alpha: 1))
+
+        let depositArea = ModelEntity(
+            mesh: MeshResource.generatePlane(width: 0.5, depth: 0.5, cornerRadius: 50),
+            materials: [material]
+        )
+        depositArea.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0, depth: 0.5)], mode: .trigger, filter: .sensor)
+        depositArea.setPosition(SIMD3(x: 0.5, y: 1.02, z: -2), relativeTo: nil)
+        return depositArea
+    }
+
     func setupGameOver() -> ModelEntity {
         let textMesh = MeshResource.generateText(
             "GAME OVER",

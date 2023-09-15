@@ -9,6 +9,7 @@ import SwiftUI
 import RealityKit
 
 struct MainMenuView: View {
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
     var body: some View {
         VStack {
             Text("TA")
@@ -22,7 +23,9 @@ struct MainMenuView: View {
                 .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
             HStack {
                 Button {
-                    print("Nouvelle partie")
+                    Task {
+                        await openImmersiveSpace(id: "Tateru")
+                    }
                 } label: {
                     Text("Nouvelle partie")
                         .font(.system(size: 50))

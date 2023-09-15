@@ -8,28 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		5B209D502A82973800822D26 /* RotateGestureModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B209D4F2A82973800822D26 /* RotateGestureModifier.swift */; };
-		5B2FDC6D2A822E2C0039C3EC /* KaplaTowerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */; };
-		5B2FDC712A822E2C0039C3EC /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */; };
+		5B2FDC6D2A822E2C0039C3EC /* TateruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC6C2A822E2C0039C3EC /* TateruApp.swift */; };
+		5B2FDC712A822E2C0039C3EC /* TateruView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2FDC702A822E2C0039C3EC /* TateruView.swift */; };
 		5B2FDC732A822E2F0039C3EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2FDC722A822E2F0039C3EC /* Assets.xcassets */; };
 		5B2FDC762A822E2F0039C3EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2FDC752A822E2F0039C3EC /* Preview Assets.xcassets */; };
-		5B762D262A8241F1007BB9FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B762D252A8241F1007BB9FE /* ContentView.swift */; };
+		5B762D262A8241F1007BB9FE /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B762D252A8241F1007BB9FE /* MainMenuView.swift */; };
 		5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */; };
 		5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6022A837CA400009016 /* DragRotationModifier.swift */; };
-		5BFBA6052A83B8DC00009016 /* ImmersiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6042A83B8DC00009016 /* ImmersiveViewModel.swift */; };
+		5BFBA6052A83B8DC00009016 /* TateruViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B209D4F2A82973800822D26 /* RotateGestureModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotateGestureModifier.swift; sourceTree = "<group>"; };
-		5B2FDC652A822E2C0039C3EC /* KaplaTower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaplaTower.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaplaTowerApp.swift; sourceTree = "<group>"; };
-		5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
+		5B2FDC652A822E2C0039C3EC /* Tateru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tateru.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B2FDC6C2A822E2C0039C3EC /* TateruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TateruApp.swift; sourceTree = "<group>"; };
+		5B2FDC702A822E2C0039C3EC /* TateruView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TateruView.swift; sourceTree = "<group>"; };
 		5B2FDC722A822E2F0039C3EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B2FDC752A822E2F0039C3EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B2FDC772A822E2F0039C3EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B762D252A8241F1007BB9FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5B762D252A8241F1007BB9FE /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementGestureModifier.swift; sourceTree = "<group>"; };
 		5BFBA6022A837CA400009016 /* DragRotationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRotationModifier.swift; sourceTree = "<group>"; };
-		5BFBA6042A83B8DC00009016 /* ImmersiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveViewModel.swift; sourceTree = "<group>"; };
+		5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TateruViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		5B2FDC5C2A822E2C0039C3EC = {
 			isa = PBXGroup;
 			children = (
-				5B2FDC672A822E2C0039C3EC /* KaplaTower */,
+				5B2FDC672A822E2C0039C3EC /* Tateru */,
 				5B2FDC662A822E2C0039C3EC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,24 +54,24 @@
 		5B2FDC662A822E2C0039C3EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B2FDC652A822E2C0039C3EC /* KaplaTower.app */,
+				5B2FDC652A822E2C0039C3EC /* Tateru.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5B2FDC672A822E2C0039C3EC /* KaplaTower */ = {
+		5B2FDC672A822E2C0039C3EC /* Tateru */ = {
 			isa = PBXGroup;
 			children = (
 				5BA861C22A82874A004C3DB2 /* Modifiers */,
-				5B2FDC6C2A822E2C0039C3EC /* KaplaTowerApp.swift */,
-				5B762D252A8241F1007BB9FE /* ContentView.swift */,
-				5B2FDC702A822E2C0039C3EC /* ImmersiveView.swift */,
-				5BFBA6042A83B8DC00009016 /* ImmersiveViewModel.swift */,
+				5B2FDC6C2A822E2C0039C3EC /* TateruApp.swift */,
+				5B762D252A8241F1007BB9FE /* MainMenuView.swift */,
+				5B2FDC702A822E2C0039C3EC /* TateruView.swift */,
+				5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */,
 				5B2FDC722A822E2F0039C3EC /* Assets.xcassets */,
 				5B2FDC772A822E2F0039C3EC /* Info.plist */,
 				5B2FDC742A822E2F0039C3EC /* Preview Content */,
 			);
-			path = KaplaTower;
+			path = Tateru;
 			sourceTree = "<group>";
 		};
 		5B2FDC742A822E2F0039C3EC /* Preview Content */ = {
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B2FDC642A822E2C0039C3EC /* KaplaTower */ = {
+		5B2FDC642A822E2C0039C3EC /* Tateru */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B2FDC7A2A822E2F0039C3EC /* Build configuration list for PBXNativeTarget "KaplaTower" */;
+			buildConfigurationList = 5B2FDC7A2A822E2F0039C3EC /* Build configuration list for PBXNativeTarget "Tateru" */;
 			buildPhases = (
 				5B2FDC612A822E2C0039C3EC /* Sources */,
 				5B2FDC622A822E2C0039C3EC /* Frameworks */,
@@ -107,11 +107,11 @@
 			);
 			dependencies = (
 			);
-			name = KaplaTower;
+			name = Tateru;
 			packageProductDependencies = (
 			);
 			productName = KaplaTower;
-			productReference = 5B2FDC652A822E2C0039C3EC /* KaplaTower.app */;
+			productReference = 5B2FDC652A822E2C0039C3EC /* Tateru.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5B2FDC602A822E2C0039C3EC /* Build configuration list for PBXProject "KaplaTower" */;
+			buildConfigurationList = 5B2FDC602A822E2C0039C3EC /* Build configuration list for PBXProject "Tateru" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B2FDC642A822E2C0039C3EC /* KaplaTower */,
+				5B2FDC642A822E2C0039C3EC /* Tateru */,
 			);
 		};
 /* End PBXProject section */
@@ -167,10 +167,10 @@
 				5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */,
 				5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */,
 				5B209D502A82973800822D26 /* RotateGestureModifier.swift in Sources */,
-				5B2FDC6D2A822E2C0039C3EC /* KaplaTowerApp.swift in Sources */,
-				5B2FDC712A822E2C0039C3EC /* ImmersiveView.swift in Sources */,
-				5B762D262A8241F1007BB9FE /* ContentView.swift in Sources */,
-				5BFBA6052A83B8DC00009016 /* ImmersiveViewModel.swift in Sources */,
+				5B2FDC6D2A822E2C0039C3EC /* TateruApp.swift in Sources */,
+				5B2FDC712A822E2C0039C3EC /* TateruView.swift in Sources */,
+				5B762D262A8241F1007BB9FE /* MainMenuView.swift in Sources */,
+				5BFBA6052A83B8DC00009016 /* TateruViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,19 +303,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"KaplaTower/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tateru/Preview Content\"";
 				DEVELOPMENT_TEAM = K34BNB8RRG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KaplaTower/Info.plist;
+				INFOPLIST_FILE = Tateru/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GuillaumeSaladin.KaplaTower;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GuillaumeSaladin.Tateru;
+				PRODUCT_NAME = Tateru;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -330,19 +330,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"KaplaTower/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tateru/Preview Content\"";
 				DEVELOPMENT_TEAM = K34BNB8RRG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KaplaTower/Info.plist;
+				INFOPLIST_FILE = Tateru/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GuillaumeSaladin.KaplaTower;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GuillaumeSaladin.Tateru;
+				PRODUCT_NAME = Tateru;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -353,7 +353,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B2FDC602A822E2C0039C3EC /* Build configuration list for PBXProject "KaplaTower" */ = {
+		5B2FDC602A822E2C0039C3EC /* Build configuration list for PBXProject "Tateru" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B2FDC782A822E2F0039C3EC /* Debug */,
@@ -362,7 +362,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B2FDC7A2A822E2F0039C3EC /* Build configuration list for PBXNativeTarget "KaplaTower" */ = {
+		5B2FDC7A2A822E2F0039C3EC /* Build configuration list for PBXNativeTarget "Tateru" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B2FDC7B2A822E2F0039C3EC /* Debug */,

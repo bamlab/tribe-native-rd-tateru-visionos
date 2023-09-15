@@ -1,5 +1,5 @@
 //
-//  ImmersiveViewModel.swift
+//  TateruViewModel.swift
 //  KaplaTower
 //
 //  Created by Guillaume Saladin on 09/08/2023.
@@ -9,23 +9,23 @@ import SwiftUI
 import RealityKit
 import ARKit
 
-@MainActor class ImmersiveViewModel: ObservableObject {
+@MainActor class TateruViewModel: ObservableObject {
 
-    private let kaplaSize: SIMD3<Float> = [0.075, 0.015, 0.025]
+    private let blockSize: SIMD3<Float> = [0.075, 0.015, 0.025]
 
-    func setupKapla(position: SIMD3<Float>, isOddFloor: Bool) -> ModelEntity {
-        let width = isOddFloor ? kaplaSize.z : kaplaSize.x
-        let height = kaplaSize.y
-        let depth = isOddFloor ? kaplaSize.x : kaplaSize.z
-        let kapla = ModelEntity(
+    func setupBlock(position: SIMD3<Float>, isOddFloor: Bool) -> ModelEntity {
+        let width = isOddFloor ? blockSize.z : blockSize.x
+        let height = blockSize.y
+        let depth = isOddFloor ? blockSize.x : blockSize.z
+        let block = ModelEntity(
             mesh: MeshResource.generateBox(width: width, height: height, depth: depth),
             materials: [SimpleMaterial(color: isOddFloor ? .systemBrown : .systemCyan, isMetallic: false)]
         )
-        kapla.components.set(InputTargetComponent())
-        kapla.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
-//        kapla.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
-        kapla.setPosition(position, relativeTo: nil)
-        return kapla
+        block.components.set(InputTargetComponent())
+        block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
+//        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
+        block.setPosition(position, relativeTo: nil)
+        return block
     }
 
     func setupTable() -> ModelEntity {
@@ -68,11 +68,11 @@ import ARKit
         return gameOver
     }
 
-    func updateKaplaGravity(kapla: Entity, isKaplaMoving: Bool) {
-        if (isKaplaMoving) {
-            kapla.components.remove(PhysicsBodyComponent.self)
+    func updateBlockGravity(block: Entity, isBlockMoving: Bool) {
+        if (isBlockMoving) {
+            block.components.remove(PhysicsBodyComponent.self)
         } else {
-            kapla.components.set(PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic))
+            block.components.set(PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic))
         }
     }
 }

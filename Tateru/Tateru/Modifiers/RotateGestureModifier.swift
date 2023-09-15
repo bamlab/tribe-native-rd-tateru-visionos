@@ -8,14 +8,14 @@
 import SwiftUI
 import RealityKit
 
-//extension View {
-//    /// Listens for gestures and places an item based on those inputs.
-//    func rotateGesture(isKaplaMoving: inout Bool) -> some View {
-//        self.modifier(
-//            RotateGestureModifier(isKaplaMoving: isKaplaMoving)
-//        )
-//    }
-//}
+extension View {
+    /// Listens for gestures and places an item based on those inputs.
+    func rotateGesture() -> some View {
+        self.modifier(
+            RotateGestureModifier()
+        )
+    }
+}
 
 /// A modifier that adds gestures and positioning to a view.
 struct RotateGestureModifier: ViewModifier {

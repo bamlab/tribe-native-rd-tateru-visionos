@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainMenuView.swift
 //  KaplaTower
 //
 //  Created by Guillaume Saladin on 08/08/2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import RealityKit
 
-struct ContentView: View {
+struct MainMenuView: View {
     var body: some View {
         VStack {
             Text("TA")

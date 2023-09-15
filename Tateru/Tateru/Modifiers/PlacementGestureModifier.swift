@@ -10,9 +10,9 @@ import RealityKit
 
 //extension View {
 //    /// Listens for gestures and places an item based on those inputs.
-//    func placementGesture(isKaplaMoving: inout Bool) -> some View {
+//    func placementGesture() -> some View {
 //        self.modifier(
-//            PlacementGestureModifier(isKaplaMoving: isKaplaMoving)
+//            PlacementGestureModifier()
 //        )
 //    }
 //}
@@ -21,8 +21,8 @@ import RealityKit
 struct PlacementGestureModifier: ViewModifier {
 
     @State private var position: Point3D? = nil
-    @Binding var kaplas: [Entity]
-    @Binding var kaplasMoving: [Bool]
+    @Binding var blocks: [Entity]
+    @Binding var blocksMoving: [Bool]
 
     func body(content: Content) -> some View {
         content
@@ -30,14 +30,14 @@ struct PlacementGestureModifier: ViewModifier {
             .simultaneousGesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
                 .targetedToAnyEntity()
                 .onChanged { value in
-                    if let index = kaplas.firstIndex(of: value.entity) {
-                        kaplasMoving[index] = true
+                    if let index = blocks.firstIndex(of: value.entity) {
+                        blocksMoving[index] = true
                     }
                     if let position {
-                        if let kapla = kaplas.first(where: { elm in
+                        if let block = blocks.first(where: { elm in
                             elm == value.entity
                         }) {
-                            print("Kapla : \(kapla.position)")
+                            print("Block : \(block.position)")
                         }
                         print("Start Position : \(value.entity.position)")
                         let delta = value.location3D - value.startLocation3D
@@ -53,8 +53,8 @@ struct PlacementGestureModifier: ViewModifier {
                     }
                 }
                 .onEnded { value in
-                    if let index = kaplas.firstIndex(of: value.entity) {
-                        kaplasMoving[index] = false
+                    if let index = blocks.firstIndex(of: value.entity) {
+                        blocksMoving[index] = false
                     }
                     position = nil
                 }

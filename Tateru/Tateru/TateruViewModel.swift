@@ -64,23 +64,6 @@ import ARKit
         return depositArea
     }
 
-    func setupGameOver() -> ModelEntity {
-        let textMesh = MeshResource.generateText(
-            "GAME OVER",
-            extrusionDepth: 0.1,
-            font: .init(
-                descriptor: .init(name: "Helvetica", size: 0),
-                size: 0.3
-            )
-        )
-        let gameOver = ModelEntity(
-            mesh: textMesh,
-            materials: [SimpleMaterial(color: .systemRed, isMetallic: true)]
-        )
-        gameOver.setPosition(SIMD3(x: -1, y: 1.5, z: -2), relativeTo: nil)
-        return gameOver
-    }
-
     func updateBlockGravity(block: Entity, isBlockMoving: Bool) {
         if (isBlockMoving) {
             block.components.remove(PhysicsBodyComponent.self)

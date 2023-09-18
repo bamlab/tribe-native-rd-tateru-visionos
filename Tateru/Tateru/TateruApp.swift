@@ -17,5 +17,9 @@ struct TateruApp: App {
         ImmersiveSpace(id: "Tateru") {
             TateruView()
         }
+
+        WindowGroup(id: "EndMenu") {
+            EndMenuView()
+        }.windowStyle(.volumetric)
     }
 }

@@ -1,25 +1,21 @@
 //
-//  MainMenuView.swift
-//  KaplaTower
+//  EndMenuView.swift
+//  Tateru
 //
-//  Created by Guillaume Saladin on 08/08/2023.
+//  Created by Guillaume Saladin on 18/09/2023.
 //
 
 import SwiftUI
 
-struct MainMenuView: View {
+struct EndMenuView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.openWindow) var openWindow
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     var body: some View {
         VStack {
-            Text("TA")
+            Text("GAME OVER")
                 .font(Font.system(size: 100, weight: .bold))
                 .foregroundColor(Color(red: 253 / 255, green: 101 / 255, blue: 101 / 255))
-                + Text("TE")
-                .font(Font.system(size: 100, weight: .bold))
-                .foregroundColor(Color(red: 83 / 255, green: 155 / 255, blue: 255 / 255))
-                + Text("RU")
-                .font(Font.system(size: 100, weight: .bold))
-                .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
             HStack {
                 Button {
                     Task {
@@ -43,5 +39,10 @@ struct MainMenuView: View {
         }
         .padding()
         .background(Color.clear)
+        .onAppear {
+            Task {
+                await dismissImmersiveSpace()
+            }
+        }
     }
 }

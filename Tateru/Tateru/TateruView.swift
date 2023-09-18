@@ -10,6 +10,7 @@ import RealityKit
 
 struct TateruView: View {
     @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.openWindow) private var openWindow
     @State private var subs: [EventSubscription] = []
     @StateObject var model = TateruViewModel()
     @State var blocks: [Entity] = []
@@ -17,43 +18,41 @@ struct TateruView: View {
     @State var isGameOver: Bool = false
 
     var body: some View {
-        if (!isGameOver) {
-            RealityView { content in
-                // Table
-                let table = model.setupTable()
-                content.add(table)
-                let event = content.subscribe(to: CollisionEvents.Began.self, on: table) { ce in
-                    isGameOver = true
-                }
-                Task {
-                    subs.append(event)
-                }
+        RealityView { content in
+            // Table
+            let table = model.setupTable()
+            content.add(table)
+            let event = content.subscribe(to: CollisionEvents.Began.self, on: table) { ce in
+                isGameOver = true
+            }
+            Task {
+                subs.append(event)
+            }
 
-                // Plate
-                content.add(model.setupPlate())
-                content.add(model.setupDepositArea())
+            // Plate
+            content.add(model.setupPlate())
+            content.add(model.setupDepositArea())
 
-                // Blocks
-                for block in blocks {
-                    content.add(block)
-                    print("Block: \(block) || \(block.position)")
-                }
+            // Blocks
+            for block in blocks {
+                content.add(block)
+                print("Block: \(block) || \(block.position)")
             }
-            .modifier(PlacementGestureModifier(blocks: $blocks, blocksMoving: $blocksMoving))
-            .onAppear {
-                dismissWindow(id: "MainMenu")
-                blocks.append(contentsOf: createTower(model))
-                blocksMoving.append(contentsOf: Array(repeating: false, count: 18*3))
-            }
-            .onChange(of: blocksMoving, initial: false) { value, newValue in
-                let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
-                if let index = indices.first {
-                    model.updateBlockGravity(block: blocks[index], isBlockMoving: blocksMoving[index])
-                }
-            }
-        } else {
-            RealityView { content in
-                content.add(model.setupGameOver())
+        }
+        .modifier(PlacementGestureModifier(blocks: $blocks, blocksMoving: $blocksMoving))
+        .onAppear {
+            dismissWindow(id: "MainMenu")
+            dismissWindow(id: "EndMenu")
+            blocks.append(contentsOf: createTower(model))
+            blocksMoving.append(contentsOf: Array(repeating: false, count: 18*3))
+        }
+        .onChange(of: isGameOver, initial: false) {
+            openWindow(id: "EndMenu")
+        }
+        .onChange(of: blocksMoving, initial: false) { value, newValue in
+            let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
+            if let index = indices.first {
+                model.updateBlockGravity(block: blocks[index], isBlockMoving: blocksMoving[index])
             }
         }
     }

@@ -11,11 +11,13 @@ import RealityKit
 struct TateruView: View {
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
+
     @State private var subs: [EventSubscription] = []
-    @StateObject var model = TateruViewModel()
-    @State var blocks: [Entity] = []
-    @State var blocksMoving: [Bool] = []
-    @State var isGameOver: Bool = false
+    @State private var blocks: [Entity] = []
+    @State private var blocksMoving: [Bool] = []
+    @State private var isGameOver: Bool = false
+
+    @StateObject var model: TateruViewModel
 
     var body: some View {
         RealityView { content in
@@ -42,6 +44,7 @@ struct TateruView: View {
             }
             let eventDepositArea = content.subscribe(to: CollisionEvents.Began.self, on: depositArea) { event in
                 event.entityB.removeFromParent()
+                model.score += 1
             }
             Task {
                 subs.append(eventTable)

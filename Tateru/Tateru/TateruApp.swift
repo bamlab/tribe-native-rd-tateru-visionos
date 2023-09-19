@@ -9,17 +9,18 @@ import SwiftUI
 
 @main
 struct TateruApp: App {
+    @StateObject var model = TateruViewModel()
     var body: some Scene {
         WindowGroup(id: "MainMenu") {
             MainMenuView()
         }.windowStyle(.volumetric)
 
         ImmersiveSpace(id: "Tateru") {
-            TateruView()
+            TateruView(model: model)
         }
 
         WindowGroup(id: "EndMenu") {
-            EndMenuView()
+            EndMenuView(model: model)
         }.windowStyle(.volumetric)
     }
 }

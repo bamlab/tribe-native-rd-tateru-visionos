@@ -13,6 +13,8 @@ import ARKit
 
     private let blockSize: SIMD3<Float> = [0.075, 0.015, 0.025]
 
+    var score: Int = 0
+
     func setupBlock(position: SIMD3<Float>, isOddFloor: Bool) -> ModelEntity {
         let width = isOddFloor ? blockSize.z : blockSize.x
         let height = blockSize.y

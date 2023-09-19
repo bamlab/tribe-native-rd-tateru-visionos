@@ -22,7 +22,7 @@ import ARKit
             materials: [SimpleMaterial(color: isOddFloor ? .systemBrown : .systemCyan, isMetallic: false)]
         )
         block.components.set(InputTargetComponent())
-        block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)])
+        block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)], mode: .colliding)
 //        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
         block.setPosition(position, relativeTo: nil)
         return block
@@ -46,7 +46,7 @@ import ARKit
             mesh: MeshResource.generateBox(width: 0.2, height: 0.01, depth: 0.2, cornerRadius: 10),
             materials: [SimpleMaterial(color: .systemGray, isMetallic: false)]
         )
-        plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.01, depth: 0.2)])
+        plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.01, depth: 0.2)], mode: .colliding)
         plate.setPosition(SIMD3(x: 0, y: 1.02, z: -2), relativeTo: nil)
         return plate
     }

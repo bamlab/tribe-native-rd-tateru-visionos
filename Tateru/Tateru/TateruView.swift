@@ -22,21 +22,30 @@ struct TateruView: View {
             // Table
             let table = model.setupTable()
             content.add(table)
-            let event = content.subscribe(to: CollisionEvents.Began.self, on: table) { ce in
-                isGameOver = true
-            }
-            Task {
-                subs.append(event)
-            }
 
             // Plate
             content.add(model.setupPlate())
-            content.add(model.setupDepositArea())
+
+            // Deposite Area
+            let depositArea = model.setupDepositArea()
+            content.add(depositArea)
 
             // Blocks
             for block in blocks {
                 content.add(block)
                 print("Block: \(block) || \(block.position)")
+            }
+
+            // Events
+            let eventTable = content.subscribe(to: CollisionEvents.Began.self, on: table) { event in
+                isGameOver = true
+            }
+            let eventDepositArea = content.subscribe(to: CollisionEvents.Began.self, on: depositArea) { event in
+                event.entityB.removeFromParent()
+            }
+            Task {
+                subs.append(eventTable)
+                subs.append(eventDepositArea)
             }
         }
         .modifier(PlacementGestureModifier(blocks: $blocks, blocksMoving: $blocksMoving))

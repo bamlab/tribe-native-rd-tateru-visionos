@@ -59,7 +59,7 @@ import ARKit
             mesh: MeshResource.generatePlane(width: 0.5, depth: 0.5, cornerRadius: 50),
             materials: [material]
         )
-        depositArea.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0, depth: 0.5)], mode: .trigger, filter: .sensor)
+        depositArea.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)], mode: .trigger, filter: .sensor)
         depositArea.setPosition(SIMD3(x: 0.5, y: 1.02, z: -2), relativeTo: nil)
         return depositArea
     }

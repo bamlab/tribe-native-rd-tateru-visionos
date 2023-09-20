@@ -22,6 +22,9 @@ struct EndMenuView: View {
             Text(text)
                 .font(Font.system(size: 100, weight: .bold))
                 .foregroundColor(color)
+            Text("Vous avez retiré \(model.score) pièces en \(prettyPrintTime(model.time))")
+                .font(Font.system(size: 50, weight: .bold))
+                .padding()
             HStack {
                 Button {
                     model.score = 0
@@ -52,4 +55,27 @@ struct EndMenuView: View {
             }
         }
     }
+}
+
+func prettyPrintTime(_ time: UInt16) -> String {
+    if (time == 0) {
+        return "0 seconde"
+    }
+    let hours = time / 10000;
+    let minutes = (time % 10000) / 100;
+    let seconds = time % 100;
+    var str = ""
+    if (hours != 0) {
+        str += "\(hours) heure"
+        str += hours > 1 ? "s " : " "
+    }
+    if (minutes != 0) {
+        str += "\(minutes) minute"
+        str += minutes > 1 ? "s " : " "
+    }
+    if (seconds != 0) {
+        str += "\(seconds) seconde"
+        str += seconds > 1 ? "s " : " "
+    }
+    return str
 }

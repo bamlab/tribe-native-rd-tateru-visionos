@@ -17,6 +17,7 @@
 		5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */; };
 		5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6022A837CA400009016 /* DragRotationModifier.swift */; };
 		5BFBA6052A83B8DC00009016 /* TateruViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */; };
+		5BFCA76A2ABB2105002DE87F /* ScoreInGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCA7692ABB2105002DE87F /* ScoreInGameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		5BA861C32A82877D004C3DB2 /* PlacementGestureModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementGestureModifier.swift; sourceTree = "<group>"; };
 		5BFBA6022A837CA400009016 /* DragRotationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRotationModifier.swift; sourceTree = "<group>"; };
 		5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TateruViewModel.swift; sourceTree = "<group>"; };
+		5BFCA7692ABB2105002DE87F /* ScoreInGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreInGameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				5B2FDC6C2A822E2C0039C3EC /* TateruApp.swift */,
 				5B762D252A8241F1007BB9FE /* MainMenuView.swift */,
 				5B90B7412AB8402E0062D33D /* EndMenuView.swift */,
+				5BFCA7692ABB2105002DE87F /* ScoreInGameView.swift */,
 				5B2FDC702A822E2C0039C3EC /* TateruView.swift */,
 				5BFBA6042A83B8DC00009016 /* TateruViewModel.swift */,
 				5B2FDC722A822E2F0039C3EC /* Assets.xcassets */,
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BFBA6032A837CA400009016 /* DragRotationModifier.swift in Sources */,
+				5BFCA76A2ABB2105002DE87F /* ScoreInGameView.swift in Sources */,
 				5BA861C42A82877D004C3DB2 /* PlacementGestureModifier.swift in Sources */,
 				5B209D502A82973800822D26 /* RotateGestureModifier.swift in Sources */,
 				5B90B7422AB8402E0062D33D /* EndMenuView.swift in Sources */,

@@ -16,6 +16,7 @@ struct TateruView: View {
     @State private var blocks: [Entity] = []
     @State private var blocksMoving: [Bool] = []
     @State private var isGameOver: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     @StateObject var model: TateruViewModel
 
@@ -66,6 +67,9 @@ struct TateruView: View {
             if let index = indices.first {
                 model.updateBlockGravity(block: blocks[index], isBlockMoving: blocksMoving[index])
             }
+        }
+        .onReceive(timer) { _ in
+            model.time += 1
         }
     }
 }

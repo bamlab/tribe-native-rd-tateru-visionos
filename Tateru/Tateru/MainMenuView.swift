@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainMenuView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.openWindow) var openWindow
     var body: some View {
         VStack {
             Text("TA")
@@ -22,6 +23,7 @@ struct MainMenuView: View {
                 .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
             HStack {
                 Button {
+                    openWindow(id: "ScoreInGame")
                     Task {
                         await openImmersiveSpace(id: "Tateru")
                     }

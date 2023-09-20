@@ -22,5 +22,9 @@ struct TateruApp: App {
         WindowGroup(id: "EndMenu") {
             EndMenuView(model: model)
         }.windowStyle(.volumetric)
+        
+        WindowGroup(id: "ScoreInGame") {
+            ScoreInGameView(model: model)
+        }.windowStyle(.volumetric)
     }
 }

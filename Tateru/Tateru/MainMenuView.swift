@@ -40,7 +40,9 @@ struct MainMenuView: View {
                         .font(.system(size: 50))
                         .bold()
                         .padding()
-                }.padding()
+                }
+                .padding()
+                .disabled(UserDefaults.standard.scores.isEmpty)
             }.padding()
         }
         .padding()

@@ -45,7 +45,9 @@ struct EndMenuView: View {
                         .font(.system(size: 50))
                         .bold()
                         .padding()
-                }.padding()
+                }
+                .padding()
+                .disabled(UserDefaults.standard.scores.isEmpty)
             }.padding()
         }
         .padding()
@@ -54,6 +56,7 @@ struct EndMenuView: View {
             Task {
                 await dismissImmersiveSpace()
             }
+            UserDefaults.standard.scores.append(Score(date: Date.now, score: model.score, time: model.time))
         }
     }
 }

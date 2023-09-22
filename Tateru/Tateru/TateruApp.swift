@@ -15,6 +15,10 @@ struct TateruApp: App {
             MainMenuView()
         }.windowStyle(.volumetric)
 
+        WindowGroup(id: "Scoreboard") {
+            ScoreboardView(model: model)
+        }.windowStyle(.volumetric)
+
         ImmersiveSpace(id: "Tateru") {
             TateruView(model: model)
         }

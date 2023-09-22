@@ -23,7 +23,6 @@ struct MainMenuView: View {
                 .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
             HStack {
                 Button {
-                    openWindow(id: "ScoreInGame")
                     Task {
                         await openImmersiveSpace(id: "Tateru")
                     }
@@ -34,7 +33,7 @@ struct MainMenuView: View {
                         .padding()
                 }.padding()
                 Button {
-                    print("Meilleur scores")
+                    openWindow(id: "Scoreboard")
                 } label: {
                     Text("Meilleur scores")
                         .font(.system(size: 50))

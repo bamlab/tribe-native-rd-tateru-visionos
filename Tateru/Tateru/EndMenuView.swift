@@ -39,7 +39,7 @@ struct EndMenuView: View {
                         .padding()
                 }.padding()
                 Button {
-                    print("Meilleur scores")
+                    openWindow(id: "Scoreboard")
                 } label: {
                     Text("Meilleur scores")
                         .font(.system(size: 50))
@@ -56,7 +56,7 @@ struct EndMenuView: View {
             Task {
                 await dismissImmersiveSpace()
             }
-            UserDefaults.standard.scores.append(Score(date: Date.now, score: model.score, time: model.time))
+            UserDefaults.standard.scores.append(Score(score: model.score, time: model.time, date: Date.now))
         }
     }
 }

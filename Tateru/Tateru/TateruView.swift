@@ -56,8 +56,13 @@ struct TateruView: View {
         .onAppear {
             dismissWindow(id: "MainMenu")
             dismissWindow(id: "EndMenu")
+            dismissWindow(id: "Scoreboard")
+            openWindow(id: "ScoreInGame")
             blocks.append(contentsOf: createTower(model))
             blocksMoving.append(contentsOf: Array(repeating: false, count: 18*3))
+        }
+        .onDisappear {
+            dismissWindow(id: "ScoreInGame")
         }
         .onChange(of: isGameOver, initial: false) {
             openWindow(id: "EndMenu")

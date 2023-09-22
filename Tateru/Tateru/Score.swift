@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Score: Codable {
-    let date: Date
+struct Score: Codable, Identifiable {
+    var id = UUID()
     let score: Int
     let time: UInt16
+    let date: Date
 }

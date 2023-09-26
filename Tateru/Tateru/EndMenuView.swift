@@ -15,7 +15,8 @@ struct EndMenuView: View {
     @StateObject var model: TateruViewModel
 
     var body: some View {
-        let isGameOver = model.score != 1
+        // We estimate that the player win if he remove 2 block of each floor, except the last one
+        let isGameOver = model.score != 17*2
         let text = isGameOver ? "GAME OVER" : "JOB DONE"
         let color = isGameOver ? Color(red: 253 / 255, green: 101 / 255, blue: 101 / 255) : Color(red: 101 / 255, green: 253 / 255, blue: 101 / 255)
         VStack {

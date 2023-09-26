@@ -16,13 +16,15 @@ import ARKit
     @Published var score: Int = 0
     @Published var time: UInt16 = 0
 
-    func setupBlock(position: SIMD3<Float>, isOddFloor: Bool) -> ModelEntity {
+    func setupBlock(position: SIMD3<Float>, color: UIColor, isOddFloor: Bool) -> ModelEntity {
         let width = isOddFloor ? blockSize.z : blockSize.x
         let height = blockSize.y
         let depth = isOddFloor ? blockSize.x : blockSize.z
+        var material = SimpleMaterial()
+        material.color = SimpleMaterial.BaseColor(tint: color)
         let block = ModelEntity(
             mesh: MeshResource.generateBox(width: width, height: height, depth: depth),
-            materials: [SimpleMaterial(color: isOddFloor ? .systemBrown : .systemCyan, isMetallic: false)]
+            materials: [material]
         )
         block.components.set(InputTargetComponent())
         block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)], mode: .colliding)

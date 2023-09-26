@@ -86,15 +86,38 @@ struct TateruView: View {
     let z: Float = -2
     for i in 1...18 {
         let yi = y+(Float(i)*0.015)
+        let colorL: UIColor = getBlocColor(red: Int.random(in: 200...230))
+        let colorM: UIColor = getBlocColor(red: Int.random(in: 200...230))
+        let colorR: UIColor = getBlocColor(red: Int.random(in: 200...230))
         if (i%2 == 0) {
-            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z+0.025), isOddFloor: false))
-            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z), isOddFloor: false))
-            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z-0.025), isOddFloor: false))
+            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z+0.025), color: colorL, isOddFloor: false))
+            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z), color: colorM, isOddFloor: false))
+            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z-0.025), color: colorR, isOddFloor: false))
         } else {
-            tower.append(model.setupBlock(position: SIMD3(x: x-0.025, y: yi, z: z), isOddFloor: true))
-            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z), isOddFloor: true))
-            tower.append(model.setupBlock(position: SIMD3(x: x+0.025, y: yi, z: z), isOddFloor: true))
+            tower.append(model.setupBlock(position: SIMD3(x: x-0.025, y: yi, z: z), color: colorR, isOddFloor: true))
+            tower.append(model.setupBlock(position: SIMD3(x: x, y: yi, z: z), color: colorM, isOddFloor: true))
+            tower.append(model.setupBlock(position: SIMD3(x: x+0.025, y: yi, z: z), color: colorL, isOddFloor: true))
         }
     }
     return tower
+}
+
+private func getBlocColor(red: Int) -> UIColor {
+    var green: Int = 0
+    var blue: Int = 0
+    switch red {
+    case 200..<210:
+        green = red - Int.random(in: 30..<35)
+        blue = green - Int.random(in: 40..<46)
+    case 210..<217:
+        green = red - Int.random(in: 25..<30)
+        blue = green - Int.random(in: 34..<40)
+    case 217..<224:
+        green = red - Int.random(in: 20..<25)
+        blue = green - Int.random(in: 28..<34)
+    default:
+        green = red - Int.random(in: 15..<20)
+        blue = green - Int.random(in: 22..<28)
+    }
+    return UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: 1)
 }

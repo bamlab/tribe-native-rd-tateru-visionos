@@ -63,7 +63,7 @@ import ARKit
             materials: [material]
         )
         depositArea.collision = CollisionComponent(shapes: [.generateBox(width: 0.5, height: 0.01, depth: 0.5)], mode: .trigger, filter: .sensor)
-        depositArea.setPosition(SIMD3(x: 0.5, y: 1.02, z: -2), relativeTo: nil)
+        depositArea.setPosition(SIMD3(x: 1, y: 1.02, z: -2), relativeTo: nil)
         return depositArea
     }
 

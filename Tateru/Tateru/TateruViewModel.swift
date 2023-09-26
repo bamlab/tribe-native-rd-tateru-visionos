@@ -26,7 +26,7 @@ import ARKit
         )
         block.components.set(InputTargetComponent())
         block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)], mode: .colliding)
-//        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
+        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
         block.setPosition(position, relativeTo: nil)
         return block
     }

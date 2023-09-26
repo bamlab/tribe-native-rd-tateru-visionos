@@ -14,13 +14,13 @@ struct MainMenuView: View {
         VStack {
             Text("TA")
                 .font(Font.system(size: 100, weight: .bold))
-                .foregroundColor(Color(red: 253 / 255, green: 101 / 255, blue: 101 / 255))
+                .foregroundColor(.redBAM)
                 + Text("TE")
                 .font(Font.system(size: 100, weight: .bold))
-                .foregroundColor(Color(red: 83 / 255, green: 155 / 255, blue: 255 / 255))
+                .foregroundColor(.blueBAM)
                 + Text("RU")
                 .font(Font.system(size: 100, weight: .bold))
-                .foregroundColor(Color(red: 254 / 255, green: 228 / 255, blue: 117 / 255))
+                .foregroundColor(.yellowBAM)
             HStack {
                 Button {
                     Task {

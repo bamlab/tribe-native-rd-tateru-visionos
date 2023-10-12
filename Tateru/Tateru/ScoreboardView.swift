@@ -78,7 +78,7 @@ struct ScoreboardView: View {
 
 func sortScores(_ scores: [Score]) -> [Score] {
     let sorted = scores.sorted { (lhs, rhs) -> Bool in
-        return (lhs.score, lhs.time, lhs.date) < (rhs.score, rhs.time, rhs.date)
+        return lhs.score > rhs.score && (lhs.time, lhs.date) < (rhs.time, rhs.date)
     }
     return sorted
 }

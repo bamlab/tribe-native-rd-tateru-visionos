@@ -28,7 +28,7 @@ import ARKit
         )
         block.components.set(InputTargetComponent())
         block.collision = CollisionComponent(shapes: [.generateBox(width: width, height: height, depth: depth)], mode: .colliding)
-        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1))
+        block.physicsBody = PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), mode: .dynamic)
         block.setPosition(position, relativeTo: nil)
         return block
     }
@@ -52,6 +52,7 @@ import ARKit
             materials: [SimpleMaterial(color: .systemGray, isMetallic: false)]
         )
         plate.collision = CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.01, depth: 0.2)], mode: .colliding)
+        plate.physicsBody = PhysicsBodyComponent(mode: .static)
         plate.setPosition(SIMD3(x: 0, y: 1.02, z: -2), relativeTo: nil)
         return plate
     }
@@ -70,10 +71,13 @@ import ARKit
     }
 
     func updateBlockGravity(block: Entity, isBlockMoving: Bool) {
-        if (isBlockMoving) {
-            block.components.remove(PhysicsBodyComponent.self)
-        } else {
-            block.components.set(PhysicsBodyComponent(massProperties: PhysicsMassProperties(mass: 0.1), material: .default, mode: .dynamic))
-        }
+        block.components.remove(PhysicsBodyComponent.self)
+        block.components.set(
+            PhysicsBodyComponent(
+                massProperties: PhysicsMassProperties(mass: 0.1),
+                material: .default,
+                mode: isBlockMoving ? .kinematic : .dynamic
+            )
+        )
     }
 }

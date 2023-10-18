@@ -10,6 +10,8 @@ import SwiftUI
 struct MainMenuView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.openWindow) var openWindow
+    @Environment(\.dismissWindow) var dismissWindow
+
     var body: some View {
         VStack {
             Text("TA")
@@ -46,5 +48,8 @@ struct MainMenuView: View {
         }
         .padding()
         .background(Color.clear)
+        .onAppear {
+            dismissWindow(id: "Scoreboard")
+        }
     }
 }

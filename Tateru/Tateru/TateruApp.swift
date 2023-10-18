@@ -18,6 +18,7 @@ struct TateruApp: App {
         WindowGroup(id: "Scoreboard") {
             ScoreboardView(model: model)
         }.windowStyle(.volumetric)
+        .defaultSize(width: 1500, height: 1500)
 
         ImmersiveSpace(id: "Tateru") {
             TateruView(model: model)

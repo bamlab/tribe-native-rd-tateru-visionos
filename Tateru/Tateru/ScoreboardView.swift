@@ -35,14 +35,16 @@ struct ScoreboardView: View {
                 Text("Date").font(Font.system(size: 50, weight: .bold)).frame(width: 400, alignment: .center)
             }.frame(width: 1200).padding(.top)
 
-            ForEach(0..<scores.count, id: \.self) { i in
-                let score = scores[i]
-                HStack {
-                    Text("\(i+1)").font(Font.system(size: 50, weight: .bold)).frame(width: 200, alignment: .center)
-                    Text("\(score.score)").font(Font.system(size: 50, weight: .bold)).frame(width: 400, alignment: .center)
-                    Text("\(score.time)").font(Font.system(size: 50, weight: .bold)).frame(width: 200, alignment: .center)
-                    Text("\(score.date.formatted(.dateTime.day().month().year()))").font(Font.system(size: 50, weight: .bold)).frame(width: 400, alignment: .center)
-                }.frame(width: 1200)
+            ScrollView {
+                ForEach(0..<scores.count, id: \.self) { i in
+                    let score = scores[i]
+                    HStack {
+                        Text("\(i+1)").font(Font.system(size: 50, weight: .bold)).frame(width: 200, alignment: .center)
+                        Text("\(score.score)").font(Font.system(size: 50, weight: .bold)).frame(width: 400, alignment: .center)
+                        Text("\(score.time)").font(Font.system(size: 50, weight: .bold)).frame(width: 200, alignment: .center)
+                        Text("\(score.date.formatted(.dateTime.day().month().year()))").font(Font.system(size: 50, weight: .bold)).frame(width: 400, alignment: .center)
+                    }.frame(width: 1200)
+                }
             }
 
             HStack {

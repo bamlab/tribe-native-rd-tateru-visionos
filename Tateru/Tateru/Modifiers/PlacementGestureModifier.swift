@@ -20,43 +20,30 @@ import RealityKit
 /// A modifier that adds gestures and positioning to a view.
 struct PlacementGestureModifier: ViewModifier {
 
-    @State private var position: Point3D? = nil
-    @Binding var blocks: [Entity]
+    @State private var position: Point3D = .zero
+    @State private var startPosition: Point3D? = nil
     @Binding var blocksMoving: [Bool]
+    var index: Int
 
     func body(content: Content) -> some View {
         content
+            .position(x: position.x, y: position.y)
+            .offset(z: position.z)
+
             // Enable people to move the model anywhere in their space.
-            .simultaneousGesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
-                .targetedToAnyEntity()
+            .simultaneousGesture(DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
                 .onChanged { value in
-                    if let index = blocks.firstIndex(of: value.entity) {
-                        blocksMoving[index] = true
-                    }
-                    if let position {
-                        if let block = blocks.first(where: { elm in
-                            elm == value.entity
-                        }) {
-                            print("Block : \(block.position)")
-                        }
-                        print("Start Position : \(value.entity.position)")
+                    blocksMoving[index] = true
+                    if let startPosition {
                         let delta = value.location3D - value.startLocation3D
-                        print("Delta : \(delta)")
-                        let newPosition = position + delta
-                        print("New Position : \(newPosition)")
-                        let newPositionEntity = value.convert(newPosition, from: .global, to: .scene)
-                        print("New Position Entity : \(newPositionEntity)")
-                        value.entity.setPosition(newPositionEntity, relativeTo: nil)
-                        print("End Position : \(value.entity.position)")
+                        position = startPosition + delta
                     } else {
-                        position = Point3D(value.entity.position)
+                        startPosition = position
                     }
                 }
-                .onEnded { value in
-                    if let index = blocks.firstIndex(of: value.entity) {
-                        blocksMoving[index] = false
-                    }
-                    position = nil
+                .onEnded { _ in
+                    blocksMoving[index] = false
+                    startPosition = nil
                 }
             )
     }

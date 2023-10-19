@@ -21,63 +21,68 @@ struct TateruView: View {
     @StateObject var model: TateruViewModel
 
     var body: some View {
-        RealityView { content in
-            // Table
-            let table = model.setupTable()
-            content.add(table)
-
-            // Plate
-            content.add(model.setupPlate())
-
-            // Deposite Area
-            let depositArea = model.setupDepositArea()
-            content.add(depositArea)
-
-            // Blocks
-            for block in blocks {
-                content.add(block)
-                print("Block: \(block) || \(block.position)")
-            }
-
-            // Events
-            let eventTable = content.subscribe(to: CollisionEvents.Began.self, on: table) { event in
-                isEndGame = true
-            }
-            let eventDepositArea = content.subscribe(to: CollisionEvents.Began.self, on: depositArea) { event in
-                event.entityB.removeFromParent()
-                model.score += 1
-                if (model.score == 17*2) {
+        VStack(spacing:0) {
+            RealityView { content in
+                // Table
+                let table = model.setupTable()
+                content.add(table)
+                
+                // Plate
+                content.add(model.setupPlate())
+                
+                // Deposite Area
+                let depositArea = model.setupDepositArea()
+                content.add(depositArea)
+                
+                // Events
+                let eventTable = content.subscribe(to: CollisionEvents.Began.self, on: table) { event in
                     isEndGame = true
                 }
+                let eventDepositArea = content.subscribe(to: CollisionEvents.Began.self, on: depositArea) { event in
+                    event.entityB.removeFromParent()
+                    model.score += 1
+                    if (model.score == 17*2) {
+                        isEndGame = true
+                    }
+                }
+                Task {
+                    subs.append(eventTable)
+                    subs.append(eventDepositArea)
+                }
             }
-            Task {
-                subs.append(eventTable)
-                subs.append(eventDepositArea)
+            .onAppear {
+                dismissWindow(id: "MainMenu")
+                dismissWindow(id: "EndMenu")
+                dismissWindow(id: "Scoreboard")
+                openWindow(id: "ScoreInGame")
+                blocks.append(contentsOf: createTower(model))
+                blocksMoving.append(contentsOf: Array(repeating: false, count: 18*3))
             }
-        }
-        .modifier(PlacementGestureModifier(blocks: $blocks, blocksMoving: $blocksMoving))
-        .onAppear {
-            dismissWindow(id: "MainMenu")
-            dismissWindow(id: "EndMenu")
-            dismissWindow(id: "Scoreboard")
-            openWindow(id: "ScoreInGame")
-            blocks.append(contentsOf: createTower(model))
-            blocksMoving.append(contentsOf: Array(repeating: false, count: 18*3))
-        }
-        .onDisappear {
-            dismissWindow(id: "ScoreInGame")
-        }
-        .onChange(of: isEndGame, initial: false) {
-            openWindow(id: "EndMenu")
-        }
-        .onChange(of: blocksMoving, initial: false) { value, newValue in
-            let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
-            if let index = indices.first {
-                model.updateBlockGravity(block: blocks[index], isBlockMoving: blocksMoving[index])
+            .onDisappear {
+                dismissWindow(id: "ScoreInGame")
             }
-        }
-        .onReceive(timer) { _ in
-            model.time += 1
+            .onChange(of: isEndGame, initial: false) {
+                openWindow(id: "EndMenu")
+            }
+            .onReceive(timer) { _ in
+                model.time += 1
+            }
+            .frame(width: 0, height: 0)
+            
+            // Blocks
+            ForEach(Array(blocks.enumerated()), id: \.offset) { index, element in
+                RealityView { content in
+                    content.add(element)
+                }
+                .modifier(PlacementGestureModifier(blocksMoving: $blocksMoving, index: index))
+                .onChange(of: blocksMoving, initial: false) { value, newValue in
+                    let indices = zip(value, newValue).enumerated().filter{$1.0 != $1.1}.map{$0.offset}
+                    if let index = indices.first {
+                        model.updateBlockGravity(block: blocks[index], isBlockMoving: blocksMoving[index])
+                    }
+                }
+                .frame(width: 0, height: 0)
+            }
         }
     }
 }

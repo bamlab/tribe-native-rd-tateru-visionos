@@ -78,9 +78,23 @@ struct ScoreboardView: View {
     }
 }
 
+typealias AreInIncreasingOrder = (Score, Score) -> Bool
+
 func sortScores(_ scores: [Score]) -> [Score] {
-    let sorted = scores.sorted { (lhs, rhs) -> Bool in
-        return lhs.score > rhs.score && (lhs.time, lhs.date) < (rhs.time, rhs.date)
+    return scores.sorted { (lhs, rhs) in
+        let predicates: [AreInIncreasingOrder] = [
+            { $0.score > $1.score },
+            { $0.time < $1.time},
+            { $0.date < $1.date }
+        ]
+        
+        for predicate in predicates {
+            if !predicate(lhs, rhs) && !predicate(rhs, lhs) {
+                continue
+            }
+            return predicate(lhs, rhs)
+        }
+
+        return false
     }
-    return sorted
 }

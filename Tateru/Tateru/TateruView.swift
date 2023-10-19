@@ -15,7 +15,7 @@ struct TateruView: View {
     @State private var subs: [EventSubscription] = []
     @State private var blocks: [Entity] = []
     @State private var blocksMoving: [Bool] = []
-    @State private var isGameOver: Bool = false
+    @State private var isEndGame: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     @StateObject var model: TateruViewModel
@@ -41,11 +41,14 @@ struct TateruView: View {
 
             // Events
             let eventTable = content.subscribe(to: CollisionEvents.Began.self, on: table) { event in
-                isGameOver = true
+                isEndGame = true
             }
             let eventDepositArea = content.subscribe(to: CollisionEvents.Began.self, on: depositArea) { event in
                 event.entityB.removeFromParent()
                 model.score += 1
+                if (model.score == 17*2) {
+                    isEndGame = true
+                }
             }
             Task {
                 subs.append(eventTable)
@@ -64,7 +67,7 @@ struct TateruView: View {
         .onDisappear {
             dismissWindow(id: "ScoreInGame")
         }
-        .onChange(of: isGameOver, initial: false) {
+        .onChange(of: isEndGame, initial: false) {
             openWindow(id: "EndMenu")
         }
         .onChange(of: blocksMoving, initial: false) { value, newValue in

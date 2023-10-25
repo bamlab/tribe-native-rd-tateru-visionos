@@ -48,7 +48,6 @@ struct EndMenuView: View {
                         .padding()
                 }
                 .padding()
-                .disabled(UserDefaults.standard.scores.isEmpty)
             }.padding()
         }
         .padding()

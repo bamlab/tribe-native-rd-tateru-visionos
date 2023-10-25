@@ -28,8 +28,6 @@ struct EndMenuView: View {
                 .padding()
             HStack {
                 Button {
-                    model.score = 0
-                    model.time = 0
                     Task {
                         await openImmersiveSpace(id: "Tateru")
                     }
@@ -57,6 +55,8 @@ struct EndMenuView: View {
                 await dismissImmersiveSpace()
             }
             UserDefaults.standard.scores.append(Score(score: model.score, time: model.time, date: Date.now))
+            model.score = 0
+            model.time = 0
         }
     }
 }

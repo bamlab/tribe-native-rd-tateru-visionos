@@ -49,8 +49,6 @@ struct ScoreboardView: View {
 
             HStack {
                 Button {
-                    model.score = 0
-                    model.time = 0
                     Task {
                         await openImmersiveSpace(id: "Tateru")
                     }

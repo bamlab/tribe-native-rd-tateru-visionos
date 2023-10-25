@@ -4,7 +4,7 @@
 Welcome to our project! This is a Jenga App made for Apple Vision Pro. This is a single-player game (for now). With this App, users can play jenga without create tower on their own. With the scoreboard, you can this how fast you are and how many wooden blocks you can remove. We hope you enjoy, and we look forward to your contributions!
 
 ## How to install
-[Download](https://xcodereleases.com/) a version of Xcode with visionOS as SDK (Tested with Xcode 15.0 Beta 8).
+[Download](https://xcodereleases.com/) a version of Xcode with visionOS as SDK (Tested with Xcode 15.0 Beta 8).  
 On Xcode download visionOS simulator and now you can run the app.
 
 ## How to play
